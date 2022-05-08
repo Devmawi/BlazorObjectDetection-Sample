@@ -21,9 +21,4 @@
     <PackageReference Include="Microsoft.ML.OnnxTransformer" Version="1.7.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="assets\models\" />
-    <Folder Include="assets\videos\" />
-  </ItemGroup>
-
 </Project>
