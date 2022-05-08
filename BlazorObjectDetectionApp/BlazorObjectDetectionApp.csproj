@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="6.0.300-rc.2.5513" />
+    <PackageReference Include="LibVLCSharp" Version="3.6.6" />
+    <PackageReference Include="SkiaSharp" Version="2.88.0-preview.232" />
+    <PackageReference Include="SkiaSharp.Views.Desktop.Common" Version="2.80.3" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+    <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.16" />
+
+    <PackageReference Include="Microsoft.ML" Version="1.7.1" />
+    <PackageReference Include="Microsoft.ML.ImageAnalytics" Version="1.7.1" />
+    <PackageReference Include="Microsoft.ML.OnnxRuntime" Version="1.11.0" />
+    <PackageReference Include="Microsoft.ML.OnnxTransformer" Version="1.7.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="assets\models\" />
+    <Folder Include="assets\videos\" />
+  </ItemGroup>
+
+</Project>

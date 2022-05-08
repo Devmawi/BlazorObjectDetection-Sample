@@ -1,0 +1,51 @@
+﻿@using System.Threading
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+     <a class="navbar-brand" href="#">Blazor Object Detection</a>
+</nav>
+<main class="p-4">
+    <div class="mb-3">
+        <button class="btn btn-sm btn-primary" @onclick="OnClick">Restart</button>
+    </div>
+    <div>
+        <img height="416" width="416" src="@Bitmap" />
+    </div>
+
+</main>
+
+
+@code {
+
+    public VideoCaptureService VideoCaptureService { get; set; }= new VideoCaptureService();
+    public CancellationTokenSource CancellationTokenSource { get; set; }
+    public string Bitmap { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {      
+        await base.OnInitializedAsync();
+        CancellationTokenSource = new CancellationTokenSource();
+
+        VideoCaptureService.Snapshot += VideoCaptureService_Snapshot;
+        await VideoCaptureService.ExecuteAsync(CancellationTokenSource.Token);
+    }
+
+    private async Task OnClick()
+    {
+        CancellationTokenSource = new CancellationTokenSource();
+
+        VideoCaptureService.Snapshot += VideoCaptureService_Snapshot;
+        await VideoCaptureService.ExecuteAsync(CancellationTokenSource.Token);
+    }
+
+     private async void VideoCaptureService_Snapshot(string bitmap)
+        {
+
+            await InvokeAsync(() =>
+            {
+                Bitmap = $"data:image/jpg;base64,{bitmap}";
+                StateHasChanged();
+                
+            });
+        }
+}
