@@ -138,7 +138,7 @@ namespace BlazorObjectDetectionApp
                 {
                     canvas.DrawBitmap(bitmap, 0, 0); // Effectively crops the original bitmap to get only the visible area
 
-                    if((DateTime.Now - LastBoxDetection).TotalMilliseconds > 500)
+                    if((DateTime.Now - LastBoxDetection).TotalMilliseconds > 250)
                     {
                       var currentDateTime = DateTime.Now;
                       // Debug.Write(currentDateTime);
@@ -175,7 +175,7 @@ namespace BlazorObjectDetectionApp
 
         private void Display(IntPtr opaque, IntPtr picture)
         {
-            if (FrameCounter % 1 == 0 && CurrentBitmap != null) // take only every 100. image
+            if (FrameCounter % 3 == 0 && CurrentBitmap != null) // take only every 100. image
             {
                 FilesToProcess.Enqueue(CurrentBitmap);
                 CurrentBitmap = null;
@@ -215,12 +215,12 @@ namespace BlazorObjectDetectionApp
                 mediaPlayer.Stopped += (s, e) => processingCancellationTokenSource.CancelAfter(1);
                 
                 // Create new media
-                var path = Path.Combine(AppContext.BaseDirectory, @"assets\videos\traffic.mp4");
+                var path = Path.Combine(AppContext.BaseDirectory, @"assets\videos\traffic_chicago.mp4");
                 var media = new Media(libvlc, path, FromType.FromPath);
                 media.AddOption(":no-audio");
                 // Set the size and format of the video here.
                 mediaPlayer.SetVideoFormat("RV32", Width, Height, Pitch);
-                mediaPlayer.SetRate(0.5f);
+                mediaPlayer.SetRate(1f);
                 mediaPlayer.SetVideoCallbacks(Lock, null, Display);
                 
                 // Start recording

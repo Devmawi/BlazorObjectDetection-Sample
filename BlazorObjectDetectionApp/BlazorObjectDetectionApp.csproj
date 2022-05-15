@@ -21,4 +21,19 @@
     <PackageReference Include="Microsoft.ML.OnnxTransformer" Version="1.7.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="assets\models\tiny-yolov2.onnx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\videos\traffic.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\videos\traffic_chicago.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\videos\traffic_in_Danang.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
